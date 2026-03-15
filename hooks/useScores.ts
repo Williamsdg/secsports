@@ -1,17 +1,14 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { fetchScoresClient } from "@/lib/espn/client-fetch";
 import type { NormalizedGame } from "@/types/scores";
 import type { SportSlug } from "@/lib/sec/sports";
 
 export function useScores(sport: SportSlug, initialData?: NormalizedGame[]) {
   return useQuery({
     queryKey: ["scores", sport],
-    queryFn: async () => {
-      const res = await fetch(`/api/scores?sport=${sport}`);
-      if (!res.ok) throw new Error("Failed to fetch scores");
-      return res.json() as Promise<NormalizedGame[]>;
-    },
+    queryFn: () => fetchScoresClient(sport),
     initialData,
     refetchInterval: (query) => {
       const data = query.state.data;
