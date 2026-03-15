@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Oswald", Impact, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-sec-navy: #002244;
+  --color-sec-gold: #CFB53B;
+
+  --color-surface: #ffffff;
+  --color-surface-raised: #f8f9fa;
+  --color-surface-overlay: #ffffff;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+  --color-live: #ef4444;
+
+  --animate-score-pulse: score-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-slide-in: slide-in 0.3s ease-out;
+}
+
+@keyframes score-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dark {
+  --color-surface: #0f1116;
+  --color-surface-raised: #1a1d24;
+  --color-surface-overlay: #252830;
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #9ca3af;
+  --color-border: #374151;
+}
+
+/* Hide scrollbar for ticker */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
