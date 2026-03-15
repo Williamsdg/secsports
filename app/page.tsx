@@ -9,6 +9,13 @@ import { NewsFeed } from "@/components/news/NewsFeed";
 import { StandingsWidget } from "@/components/standings/StandingsWidget";
 import { TeamSelector } from "@/components/teams/TeamSelector";
 import { VideoCarousel } from "@/components/video/VideoCarousel";
+import { HeroSection } from "@/components/home/HeroSection";
+import { TeamShowcase } from "@/components/home/TeamShowcase";
+import { ConferenceLegacy } from "@/components/home/ConferenceLegacy";
+import { FanEngagement } from "@/components/home/FanEngagement";
+import { RivalrySection } from "@/components/home/RivalrySection";
+import { RecruitingTracker } from "@/components/home/RecruitingTracker";
+import { AnalyticsSection } from "@/components/home/AnalyticsSection";
 
 export const revalidate = 60;
 
@@ -23,23 +30,48 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Score Ticker */}
+      {/* 1. Cinematic Hero — The first thing you see */}
+      <HeroSection />
+
+      {/* 2. Score Ticker — Persistent live scores */}
       <ScoreTicker initialScores={scores} />
 
-      <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
-        {/* Live Scores Hub */}
+      {/* 3. Live Scores Hub — Active games front and center */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <LiveScoreHub initialScores={scores} />
+      </div>
 
-        {/* Team Selector */}
+      {/* 4. Team Showcase — 16 programs, interactive */}
+      <TeamShowcase teams={teams} />
+
+      {/* 5. Follow Your Teams — Personalization */}
+      <div className="max-w-7xl mx-auto px-4 py-4">
         <TeamSelector teams={teams} />
+      </div>
 
-        {/* Latest News */}
+      {/* 6. Latest News + Video Highlights */}
+      <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
         <NewsFeed articles={news} />
-
-        {/* Video Highlights */}
         <VideoCarousel videos={videos} />
+      </div>
 
-        {/* Standings */}
+      {/* 7. SEC Rivalries — Interactive rivalry explorer */}
+      <RivalrySection />
+
+      {/* 8. Conference Legacy — Timeline & championships */}
+      <ConferenceLegacy />
+
+      {/* 9. Fan Zone — Polls, predictions, trivia */}
+      <FanEngagement />
+
+      {/* 10. Recruiting & NIL Tracker */}
+      <RecruitingTracker />
+
+      {/* 11. SEC Analytics — Advanced stats */}
+      <AnalyticsSection />
+
+      {/* 12. Standings */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <StandingsWidget standings={standings} />
       </div>
     </>
